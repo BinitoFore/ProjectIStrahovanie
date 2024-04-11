@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CurseProject.Models.User>
+
+@{
+	ViewBag.Title = "Клиенты:";
+}
+
+	<h2>Просмотр клиентов</h2>
+
+	<div>
+		<form>
+			<div>
+				<select name="change">
+					<option value="0">Просмотр юридических лиц</option>
+					<option value="1">Просмотр физических лиц</option>
+				</select>
+			</div>
+			<p></p>
+			<p>Введите имя пользователя (Необязательно)</p>
+			<div>
+				<input type="text" name="userName" placeholder="Имя пользователя"/>
+			</div>
+			<p>Введите номер паспорта пользователя (Необязательно)</p>
+			<div>
+				<input type="text" name="passNumber" placeholder="Номер паспорта"/>
+			</div>
+			<p></p>
+			<div>
+				<input type="button" id="change" value="Выбрать"/>
+			</div>
+		</form>
+	</div>
+	<div id="PartialView">
+	
+	</div>
+
+@section Scripts{
+
+			<script>
+				$('#change').click(function (){
+					$.ajax({
+						url: "/Users/GetClients",
+						type: "POST",
+						data: $("form").serialize(),
+						success: function (result){
+							$("#PartialView").html(result);
+						}
+					});
+				})
+
+
+			</script>
+
+}

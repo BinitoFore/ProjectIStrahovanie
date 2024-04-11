@@ -1,0 +1,42 @@
+﻿@model CurseProject.ViewModelsl.AddPropByDataViewModel;
+
+<h2>Введите данные имущества</h2>
+
+<form method="post" asp-controller="Contracts" asp-action="AddPropertyByData">
+    <a asp-controller="Contracts" asp-action="AddProperty">Назад</a>
+    <div>
+        @if (Model != null){
+            <p> @Model.errorText </p>
+        }
+    </div>
+    <div>
+        <label asp-for="name"></label><br />
+        <input asp-for="name" />
+        <span asp-validation-for="name"></span>
+    </div>
+    <div>
+        <label asp-for="description"></label><br />
+        <input asp-for="description" />
+        <span asp-validation-for="description"></span>
+    </div>
+    <div>
+        <label asp-for="ownerName"></label><br />
+        <input asp-for="ownerName" />
+        <span asp-validation-for="ownerName"></span>
+    </div>
+    <div>
+        @if (Model != null)
+        {
+            <p> @Model.errorOwnText </p>
+        }
+    </div>
+    <p> Добавить имущество в БД при условии что оно не будет найдено?</p>
+    <div>
+        <label asp-for="AddProperty"></label><br />
+        <input asp-for="AddProperty" />
+        <span asp-validation-for="AddProperty"></span>
+    </div>
+    <div>
+        <input type="submit" value="Добавить" />
+    </div>
+</form>

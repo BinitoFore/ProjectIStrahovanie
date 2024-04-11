@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CurseProject.Models.User>
+
+@{
+	ViewBag.Title = "Пользователи:";
+}
+
+<h2>Пользователи</h2>
+
+<form>
+    <p>Поиск</p>
+    <p></p>
+    <p>
+        Введите имя аккаунта пользователя (Необязательно).
+    </p>
+    <div>
+        <input type="text" name="userName" placeholder="Название аккаунта пользователя" />
+    </div>
+    <p></p>
+    <p>
+        Введите Id пользователя (Необязательно). При заполнении поля поле аккаунта пользователя игнорируется.
+    </p>
+    <div>
+        <input type="text" name="id" placeholder="Id пользователя" />
+    </div>
+    <p></p>
+    <input type="button" id="find" value="Искать" />
+    <p></p>
+</form>
+
+<div id="PartialView">
+    @await Html.PartialAsync("GetUsers", Model)
+</div>
+
+@section Scripts{
+
+    <script>
+        $('#find').click(function () {
+            $.ajax({
+                url: "/Users/GetUsers",
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    $("#PartialView").html(result);
+                }
+            });
+        })
+
+
+    </script>
+
+}

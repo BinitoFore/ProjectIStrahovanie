@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CurseProject.Models.Req_for_paym>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Заявки на выплату</h1>
+
+<form>
+    <p>Поиск</p>
+    @if (User.IsInRole("Agent") || User.IsInRole("Admin"))
+    {
+        <p></p>
+        <p>
+            Введите имя аккаунта заявителя (Необязательно).
+        </p>
+        <div>
+            <input type="text" name="userName" placeholder="Название аккаунта заявителя" />
+    </div>
+    }
+    <p></p>
+    <p>
+        Введите номер договора (Необязательно).
+    </p>
+    <div>
+        <input type="text" name="num_of_contr" placeholder="Номер договора" />
+    </div>
+    <p></p>
+    <input type="button" id="find" value="Искать" />
+    <p></p>
+</form>
+
+<div id="PartialView">
+    @await Html.PartialAsync("GetReqForPaym", Model)
+</div>
+
+
+@section Scripts{
+
+    <script>
+        $('#find').click(function () {
+            $.ajax({
+                url: "/ReqforPaym/GetReqForPaym",
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    $("#PartialView").html(result);
+                }
+            });
+        })
+
+
+    </script>
+
+}

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CurseProject.Models.Contract>
+
+@{
+	ViewBag.Title = "Договоры:";
+}
+
+<h2>Договоры</h2>
+
+<form>
+	<p>Выберите фильтры</p>
+	<div>
+		<select name="type">
+			<option value="0">Проблемные договоры</option>
+			<option value="1">Все</option>
+		</select>
+	</div>
+	<p></p>
+	<div>
+		<select name="userType">
+			<option value="0">Все</option>
+			<option value="1">Договоры с юридическими лицами</option>
+			<option value="2">Договоры с физическими лицами</option>
+		</select>
+	</div>
+	<p></p>
+	<div>
+		<select name="contrType">
+			<option value="0">Все</option>
+			<option value="1">Договоры страхования жизни</option>
+			<option value="2">Договоры страхования имущества</option>
+		</select>
+	</div>
+	<p></p>
+    <p>
+        Введите дату вступления в силу (Необязательно).
+    </p>
+    <div>
+        <input type="date" name="startDate" placeholder="Дата вступления в силу" />
+    </div>
+	<p></p>
+	<p>
+		Введите дату окончания действия (Необязательно).
+	</p>
+	<div>
+		<input type="date" name="endDate" placeholder="Дата окончания действия" />
+	</div>
+	@if (User.IsInRole("Agent") || User.IsInRole("Admin"))
+	{
+		<p></p>
+		<p>Введите имя аккаунта клиента (Необязательно)</p>
+		<div>
+			<input type="text" name="clientName" placeholder="Имя аккаунта клиента"/>
+		</div>
+	}
+	<p></p>
+	<p>Введите имя аккаунта агента (Необязательно)</p>
+	<div>
+		<input type="text" name="agentName" placeholder="Имя аккаунта агента" />
+	</div>
+	<p></p>
+	<p></p>
+	<input type="button" id="chose" value="Выбрать"/>
+	<p></p>
+</form>
+
+<a class="btn btn-sm btn-primary" asp-controller="Contracts" asp-action="Register" >Зарегистрировать договор</a>
+
+<div id="PartialView">
+	@await Html.PartialAsync("GetContracts", Model)
+</div>
+
+
+
+
+@section Scripts{
+
+	<script>
+		$('#chose').click(function () {
+			$.ajax({
+				url: "/Contracts/GetContracts",
+				type: "POST",
+				data: $("form").serialize(),
+				success: function (result) {
+					$("#PartialView").html(result);
+				}
+			});
+		})
+
+
+	</script>
+
+}

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CurseProject.Models.User>
+
+    <h2>Агенты</h2>
+
+<form>
+    <p>Поиск</p>
+    <p></p>
+    <p>
+        Введите название аккаунта агента (Необязательно).
+    </p>
+    <div>
+        <input type="text" name="agentName" placeholder="Название аккаунта агента" />
+    </div>
+    <p></p>
+    <p>
+        Введите имя агента (Необязательно).
+    </p>
+    <div>
+        <input type="text" name="name" placeholder="Имя агента" />
+    </div>
+    <p></p>
+    <p>
+        Введите фамилию агента (Необязательно).
+    </p>
+    <div>
+        <input type="text" name="secName" placeholder="Фамилия агента" />
+    </div>
+    <p></p>
+    <p>
+        Введите отчество агента (Необязательно).
+    </p>
+    <div>
+        <input type="text" name="phatonymic" placeholder="Отчество агента" />
+    </div>
+    <p></p>
+    <p></p>
+    <input type="button" id="find" value="Искать" />
+    <p></p>
+</form>
+
+<div id="PartialView">
+    @await Html.PartialAsync("GetAgents", Model)
+</div>
+
+@section Scripts{
+
+    <script>
+        $('#find').click(function () {
+            $.ajax({
+                url: "/Users/GetAgents",
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    $("#PartialView").html(result);
+                }
+            });
+        })
+
+
+    </script>
+
+}

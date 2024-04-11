@@ -1,0 +1,71 @@
+﻿@model CurseProject.ViewModelsl.RegisterContractViewModel
+
+<h2> Registration </h2>
+<a asp-controller="Contracts" asp-action="Index">Назад</a>
+<form method="post" asp-controller="Contracts" asp-action="Register">
+    <div>
+        <label asp-for="clientName"></label><br />
+        <input asp-for="clientName" />
+        <span asp-validation-for="clientName"></span>
+    </div>
+    <div>
+            @if (@Model != null){
+                <p> @Model.errorText</p>
+            }
+    </div>
+    <div>
+        <label asp-for="insAmenitId"></label><br />
+        <input asp-for="insAmenitId" />
+        <span asp-validation-for="insAmenitId"></span>
+    </div>
+    <div>
+        @if (@Model != null)
+        {
+            <p> @Model.errorAmenitText</p>
+        }
+    </div>
+    <div>
+        <label asp-for="riskId"></label><br />
+        <input asp-for="riskId" />
+        <span asp-validation-for="riskId"></span>
+    </div>
+    <div>
+        @if (@Model != null)
+        {
+            <p> @Model.errorRiskText</p>
+        }
+    </div>
+    <div>
+        <label asp-for="Ins_premium"></label><br />
+        <input asp-for="Ins_premium" />
+        <span asp-validation-for="Ins_premium"></span>
+    </div>
+    <div>
+        <label asp-for="Ins_sum"></label><br />
+        <input asp-for="Ins_sum" />
+        <span asp-validation-for="Ins_sum"></span>
+    </div>
+    <div>
+        <label asp-for="arrears"></label><br />
+        <input asp-for="arrears" />
+        <span asp-validation-for="arrears"></span>
+    </div>
+    <div>
+        <label asp-for="Start_date"></label><br />
+        <input type="date" asp-for="Start_date" />
+        <span asp-validation-for="Start_date"></span>
+    </div>
+    <div>
+        <label asp-for="End_date"></label><br />
+        <input type="date" asp-for="End_date" />
+        <span asp-validation-for="End_date"></span>
+    </div>
+    <div>
+        <label asp-for="liveInsertion"></label><br />
+        <input asp-for="liveInsertion" />
+        <span asp-validation-for="liveInsertion"></span>
+    </div>
+    <div>
+        <input type="submit" value="Регистрация" />
+    </div>
+</form>

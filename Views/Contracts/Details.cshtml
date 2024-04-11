@@ -1,0 +1,45 @@
+﻿@model CurseProject.Models.Contract;
+
+<h2>Сведения о договоре</h2>
+<table class="table">
+	<tr><th>Номер договора</th><td>@Model.num_of_contr</td></tr>
+	<tr>
+	<th>Клиент</th><td>@Model.client.UserName</td></tr>
+	<tr>
+	<th>Агент</th><td>@Model.agent.UserName</td></tr>
+	<tr>
+	<th>Услуга страхования</th><td>@Model.insAmenities.Name</td></tr>
+	<tr>
+	<th>Риск</th><td>@Model.risk.name</td></tr>
+	<tr>
+	<th>Страховая премия</th><td>@Model.Ins_premium</td></tr>
+	<tr>
+	<th>Страховая сумма</th><td>@Model.Ins_sum</td></tr>
+	<tr>
+	<th>Задолженность</th><td>@Model.arrears</td></tr>
+	<tr>
+	<th>Дата вступления в силу</th><td>@Model.Start_date</td></tr>
+	<tr>
+	<th>Дата окончания действия</th><td>@Model.End_date</td></tr>
+	<tr>
+	<th>Договор проблемный</th><td>@Model.Is_problem</td></tr>
+</table>
+
+<h2>Имущество</h2>
+
+<table class="table">
+	<tr><th>Id</th><th>Название</th><th>Описание</th></tr>
+	@if (Model.properties != null)
+	{
+		@foreach (var property in Model.properties)
+		{
+			<tr>
+				<td>@property.Id</td>
+				<td>@property.Name</td>
+				<td>@property.descript</td>
+			</tr>
+		}
+	}
+</table>
+
+<a asp-controller="Contracts" asp-action="Index">На главную</a>

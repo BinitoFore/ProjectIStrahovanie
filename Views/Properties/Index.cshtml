@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CurseProject.Models.Property>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Имущество</h1>
+
+<form>
+    <p>Поиск</p>
+    <p></p>
+    <p>
+        Введите имя аккаунта владельца (Необязательно).
+    </p>
+    <div>
+        <input type="text" name="ownerName" placeholder="Имя аккаунта владельца" />
+    </div>
+    <p></p>
+    <p>
+        Введите название имущества (Необязательно). В случае, если имущество с таким названием не будет найдено, 
+        будет возвращен список имущества с похожим названием.
+    </p>
+    <div>
+        <input type="text" name="name" placeholder="Название имущества" />
+    </div>
+    <p></p>
+    <input type="button" id="find" value="Искать" />
+    <p></p>
+</form>
+
+<p>
+    <a asp-action="Create">Добавить</a>
+</p>
+
+<div id="PartialView">
+    @await Html.PartialAsync("GetProperties")
+</div>
+
+@section Scripts{
+
+    <script>
+        $('#find').click(function () {
+            $.ajax({
+                url: "/Properties/GetProperties",
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    $("#PartialView").html(result);
+                }
+            });
+        })
+
+
+    </script>
+
+}

@@ -1,0 +1,28 @@
+﻿@model CurseProject.ViewModelsl.ChangeRoleViewModel
+
+@{
+	ViewBag.Title = "Роли:";
+}
+<h2> Выберите новую роль для пользователя @Model.user.UserName. </h2>
+	
+<h2>Текущая роль: </h2>
+<table>
+	<tr><th>Имя роли</th></tr>
+		<tr>
+			<td>
+				@Model.roleName
+			</td>
+		</tr>
+			
+</table>
+
+
+<form asp-controller="Users" asp-action="ChangeRole" asp-route-Id="@Model.user.Id" asp-route-oldRoleName="@Model.roleName" method="post">
+	<p> Выберите желаемую роль из списка и нажмите "Установить роль":</p>
+	<select name="Name" asp-items="Model.Roles">
+	</select>
+	<button type="submit" class="btn btn-sm btn-danger">
+		Установить роль
+	</button>
+	<a class="btn btn-sm btn-primary" asp-controller="Users" asp-action="Index" >Назад</a>
+</form>

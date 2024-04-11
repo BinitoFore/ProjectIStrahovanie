@@ -1,0 +1,16 @@
+﻿@model IEnumerable<CurseProject.Models.User>;
+
+
+<table class="table">
+	<tr><th>Имя пользователя</th><th>Имя</th><th>Фамилия</th><th>Отчество</th><th>Номер паспорта</th><th>Номер телефона</th></tr>
+	@foreach (var user in Model){
+		<tr>
+			<td>@user.UserName</td>
+			<td>@user.Name</td>
+			<td>@user.SecName</td>
+			<td>@user.Pathonymic</td>
+			<td>@user.Passp_number</td>
+			<td>@user.PhoneNumber</td>
+		</tr>
+	}
+</table>

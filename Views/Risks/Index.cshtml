@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CurseProject.Models.Risk>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Риски</h1>
+
+<form>
+    <p>Поиск</p>
+    <p></p>
+    <p>
+        Введите название риска (Необязательно). В случае, если риск с таким названием не будет найден,
+        будет возвращен список рисков с похожим названием.
+    </p>
+    <div>
+        <input type="text" name="riskName" placeholder="Название риска" />
+    </div>
+    <p></p>
+    <input type="button" id="find" value="Искать" />
+    <p></p>
+</form>
+
+<p>
+    <a asp-action="Create">Добавить</a>
+</p>
+
+<div id="PartialView">
+    @await Html.PartialAsync("GetRisks", Model)
+</div>
+
+@section Scripts{
+
+    <script>
+        $('#find').click(function () {
+            $.ajax({
+                url: "/Risks/GetRisks",
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    $("#PartialView").html(result);
+                }
+            });
+        })
+
+
+    </script>
+
+}

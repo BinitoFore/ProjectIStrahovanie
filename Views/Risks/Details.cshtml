@@ -1,0 +1,18 @@
+﻿@model CurseProject.Models.Risk
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробнее</h1>
+
+<div>
+	<table class="table">
+		<tr><th>Название</th><td>@Model.name</td></tr>
+		<tr><th>Описание</th><td>@Model.descrip</td></tr>
+	</table>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Редактировать</a> |
+    <a asp-action="Index">Назад к списку</a>
+</div>

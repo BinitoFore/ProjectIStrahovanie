@@ -1,0 +1,18 @@
+﻿@using CurseProject.ViewModelsl;
+
+@model CurseProject.ViewModelsl.AddPropByIdViewModel;
+
+<form method="post" asp-controller="Contracts" asp-action="AddPropertyById">
+    <a asp-controller="Contracts" asp-action="AddProperty">Назад</a>
+    <div>
+        <label asp-for="Id"></label><br />
+        <input asp-for="Id" />
+        <span asp-validation-for="Id"></span>
+    </div>
+    <div>
+        <p> @Model.errorText </p>
+    </div>
+    <div>
+        <input type="submit" value="Добавить" />
+    </div>
+</form>

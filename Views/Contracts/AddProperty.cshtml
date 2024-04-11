@@ -1,0 +1,85 @@
+﻿@using CurseProject.ViewModelsl
+@model CurseProject.ViewModelsl.AddPropertyViewModel;
+
+<h2> Добавьте страхуемое имущество </h2>
+
+<table class="table">
+	<tr><th>Клиент</th><th>Услуга страхования</th><th>Риск</th><th>Страховая премия</th><th>Страховая сумма</th><th>Задолженность</th><th>Дата вступления в силу</th><th>Дата окончания действия</th></tr>
+		<tr>
+			<td>@AddPropertyViewModel.clientName</td>
+			<td>@AddPropertyViewModel.amenitId</td>
+			<td>@AddPropertyViewModel.riskId</td>
+			<td>@AddPropertyViewModel.contract.Ins_premium</td>
+			<td>@AddPropertyViewModel.contract.Ins_sum</td>
+			<td>@AddPropertyViewModel.contract.arrears</td>
+			<td>@AddPropertyViewModel.contract.Start_date</td>
+			<td>@AddPropertyViewModel.contract.End_date</td>
+		</tr>
+</table>
+
+<h2> Добавленное имущество </h2>
+
+<table class="Table">
+		
+		<tr>
+			<td><a asp-action="AddPropertyById" asp-route-model="@Model">Добавить имущество по ID</a></td>
+		</tr>
+
+		
+</table>
+
+
+<table class="Table">
+
+	<tr>
+		<td><a asp-action="AddPropertyByData" asp-route-model="@Model">Добавить имущество по данным</a></td>
+	</tr>
+
+</table>
+
+
+<table class="table">
+	<tr><th>Id</th><th>Название</th><th>Описание</th><th>Владелец</th></tr>
+	@foreach (var property in AddPropertyViewModel.properties)
+	{
+		<tr>
+			<td>@property.Id</td>
+			<td>@property.Name</td>
+			<td>@property.descript</td>
+			<td>@property.owner.UserName</td>
+			<td>
+				<form method="post" asp-action="CancelChange" asp-route-id="@property.Id">
+					<button type="submit" class="btn btn-sm btn-danger">
+						Отменить выбор
+					</button>
+				</form>
+			</td>
+		</tr>
+		}
+</table>
+
+<h2>Добавляемое в БД имущество</h2>
+<table class="table">
+	<tr><th>Id</th><th>Название</th><th>Описание</th><th>Владелец</th></tr>
+	@foreach (var property in AddPropertyViewModel.addingProperty)
+	{
+		<tr>
+			<td>@property.Id</td>
+			<td>@property.Name</td>
+			<td>@property.descript</td>
+			<td>@property.owner.UserName</td>
+			<td>
+				<form method="post" asp-action="CancelAdding" asp-route-id="@property.Id">
+					<button type="submit" class="btn btn-sm btn-danger">
+						Отменить выбор
+					</button>
+				</form>
+			</td>
+		</tr>
+		}
+</table>
+<form asp-action="RegisterPropertyContract" asp-route-id="">
+	<button type="submit" class="btn btn-sm btn-danger">
+		Зарегистрировать договор
+	</button>
+</form>

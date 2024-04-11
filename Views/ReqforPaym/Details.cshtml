@@ -1,0 +1,29 @@
+﻿@model CurseProject.Models.Req_for_paym
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+	<h2>Сведения о заявке</h2>
+	<table class="table">
+		<tr><th>Id</th><td>@Model.Id</td></tr>
+		<tr>
+			<th>Номер договора</th>
+			<td>@Model.contract.num_of_contr</td>
+		</tr>
+		<tr>
+			<th>Заявитель</th>
+			<td>@Model.contract.client.UserName</td>
+		</tr>
+		<tr>
+			<th>Текст заявки</th>
+			<td>@Model.description</td>
+		</tr>
+	</table>
+</div>
+<div>
+    <a asp-action="Index">назад к списку</a>
+</div>

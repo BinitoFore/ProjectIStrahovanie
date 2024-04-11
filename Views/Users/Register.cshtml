@@ -1,0 +1,72 @@
+﻿@model CurseProject.ViewModelsl.RegisterViewModel;
+<h2> Registration </h2>
+<form method="post" asp-controller="Users" asp-action="Register">
+    <div>
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="SecName"></label><br />
+        <input asp-for="SecName" />
+        <span asp-validation-for="SecName"></span>
+    </div>
+    <div>
+        <label asp-for="Pathonymic"></label><br />
+        <input asp-for="Pathonymic" />
+        <span asp-validation-for="Pathonymic"></span>
+    </div>
+    <div>
+        <label asp-for="TelNumber"></label><br />
+        <input asp-for="TelNumber" />
+        <span asp-validation-for="TelNumber"></span>
+    </div>
+    <div>
+        <label asp-for="PassNumber"></label><br />
+        <input asp-for="PassNumber" />
+        <span asp-validation-for="PassNumber"></span>
+    </div>
+    <div>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label><br />
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label asp-for="PasswordConfirm"></label><br />
+        <input asp-for="PasswordConfirm" />
+        <span asp-validation-for="PasswordConfirm"></span>
+    </div>
+    <div>
+        <label asp-for="code"></label><br />
+        <input asp-for="code" />
+        <span asp-validation-for="code"></span>
+    </div>
+    <div>
+        <label asp-for="legalEntity"></label><br />
+        <input asp-for="legalEntity" />
+        <span asp-validation-for="legalEntity"></span>
+    </div>
+    <div>
+        <label asp-for="Leg_adress"></label><br />
+        <input asp-for="Leg_adress" />
+        <span asp-validation-for="Leg_adress"></span>
+    </div>
+    <div>
+        <label asp-for="Paym_account"></label><br />
+        <input asp-for="Paym_account" />
+        <span asp-validation-for="Paym_account"></span>
+    </div>
+    <div>
+        <label asp-for="Org_name"></label><br />
+        <input asp-for="Org_name" />
+        <span asp-validation-for="Org_name"></span>
+    </div>
+    <div>
+        <input type="submit" value="Регистрация" />
+    </div>
+</form>

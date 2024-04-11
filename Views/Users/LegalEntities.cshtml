@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CurseProject.Models.Legal_entity>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя
+            </th>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                Отчество
+            </th>
+            <th>
+                Имя пользователя
+            </th>
+            <td>
+                Номер паспорта
+            </td>
+            <th>
+                Номер телефона
+            </th>
+            <th>
+                Название организации
+            </th>
+            <th>
+                Юридический адрес
+            </th>
+            <th>
+                Расчетный счет
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+		    <td>
+                @Html.DisplayFor(modelItem => item.user.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.SecName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Pathonymic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Passp_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.PhoneNumber)
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.Org_name)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Leg_adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paym_account)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

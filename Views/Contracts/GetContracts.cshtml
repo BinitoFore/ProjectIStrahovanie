@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CurseProject.Models.Contract>;
+
+<h2>Договоры</h2>
+
+<table class="table">
+	<tr><th>Номер договора</th><th>Клиент</th><th>Агент</th><th>Услуга страхования</th><th>Риск</th><th>Страховая премия</th><th>Страховая сумма</th><th>Задолженность</th><th>Дата вступления в силу</th><th>Дата окончания действия</th></tr>
+	@foreach (var contract in Model)
+	{
+		<tr>
+			<td>@contract.num_of_contr</td>
+			<td>@contract.client.UserName</td>
+			<td>@contract.agent.UserName</td>
+			<td>@contract.insAmenities.Name</td>
+			<td>@contract.risk.name</td>
+			<td>@contract.Ins_premium</td>
+			<td>@contract.Ins_sum</td>
+			<td>@contract.arrears</td>
+			<td>@contract.Start_date</td>
+			<td>@contract.End_date</td>
+			<td>
+				<a class="btn btn-sm btn-primary" asp-action="Details" asp-route-id="@contract.num_of_contr">Подробности</a>
+			</td>
+			<td>
+				<a class="btn btn-sm btn-primary" asp-controller="ReqforPaym" asp-action="Create" asp-route-id="@contract.num_of_contr">Оставить заяку на выплату</a>
+			</td>
+			<td>
+				<form asp-action="Delete" asp-route-id="@contract.num_of_contr">
+					<button type="submit" class="btn btn-sm btn-danger">
+						Удалить договор
+					</button>
+				</form>
+			</td>
+		</tr>
+	}
+</table>

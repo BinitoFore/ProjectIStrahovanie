@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CurseProject.Models.InsAmenities>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form>
+    <p>Поиск по названию услуги</p>
+    <p></p>
+    <p>Введите название услуги (Необязательно). Регистр не учитывается. В случае, 
+        если услуга с таким же названием не будет обнаружена, 
+        будет возращен список услуг с похожими названиями.
+    </p>
+    <div>
+        <input type="text" name="amenitName" placeholder="Название услуги" />
+    </div>
+    <p></p>
+    <input type="button" id="find" value="Искать" />
+    <p></p>
+</form>
+
+<p>
+    <a asp-action="Create">Добавить</a>
+</p>
+
+<div id="PartialView">
+    @await Html.PartialAsync("GetInsAmenities")
+</div>
+
+
+@section Scripts{
+
+    <script>
+        $('#find').click(function () {
+            $.ajax({
+                url: "/insAmenities/GetInsAmenities",
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    $("#PartialView").html(result);
+                }
+            });
+        })
+
+
+    </script>
+
+}
